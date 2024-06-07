@@ -13,10 +13,19 @@
         android:theme="@style/Theme.Project_PRM392"
         tools:targetApi="31">
         <activity
+            android:name=".ItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciseScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciseAdapter"
+            android:exported="false" />
+        <activity
             android:name=".Detail2Activity"
             android:exported="false" />
         <activity
-            android:name=".DetailActivity"
+            android:name=".ItemDetailActivity"
             android:exported="false" />
         <activity
             android:name=".StartActivity"

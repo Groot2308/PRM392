@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onbtnstartClick(View view) {
-        Intent intent = new Intent(this,DetailActivity.class );
+        Intent intent = new Intent(this,ExerciseScreen.class );
         startActivity(intent);
     }
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void beforage18(View view) {
-        Intent intent = new Intent(this,DetailActivity.class );
+        Intent intent = new Intent(this,ExerciseScreen.class );
         startActivity(intent);
     }
 

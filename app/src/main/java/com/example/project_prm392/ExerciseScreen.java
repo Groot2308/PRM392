@@ -1,0 +1,65 @@
+package com.example.project_prm392;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
+public class ExerciseScreen extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private ExerciseAdapter adapter;
+    private SQLiteHelper dbHelper;
+    private List<Exercise> exerciseList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_exercise_screen);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        dbHelper = new SQLiteHelper(this);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        exerciseList = dbHelper.getAllExercises();
+        adapter = new ExerciseAdapter(exerciseList, new ExerciseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Exercise exercise) {
+                Intent intent = new Intent(ExerciseScreen.this, Detail2Activity.class);
+                intent.putExtra("exerciseId", exercise.getId());
+                startActivity(intent);
+            }
+        });
+        recyclerView.setAdapter(adapter);
+
+        addInitialData();
+    }
+
+    private void addInitialData() {
+        if (exerciseList.isEmpty()) {
+            dbHelper.addExercise(new Exercise("Mountain Climber", 2, "01:00 MIN", R.drawable.mountain_climbers_d));
+            dbHelper.addExercise(new Exercise("Bicycle Crunches", 2, "01:00 MIN", R.drawable.bicycle_crunches_a));
+            dbHelper.addExercise(new Exercise("Butt Bridge", 2, "01:00 MIN", R.drawable.butt_bridge_a));
+            dbHelper.addExercise(new Exercise("Bent Leg Twist", 2, "01:00 MIN", R.drawable.bent_leg_twist_a));
+            dbHelper.addExercise(new Exercise("Clapping Crunches", 2, "01:00 MIN", R.drawable.clapping_crunches_a));
+            dbHelper.addExercise(new Exercise("Cross Arm Crunches", 2, "01:00 MIN", R.drawable.cross_arm_crunches_a));
+            dbHelper.addExercise(new Exercise("Cross mountain Climber", 2, "01:00 MIN", R.drawable.cross_body_mountain_climber1));
+            dbHelper.addExercise(new Exercise("Dead Bug", 2, "01:00 MIN", R.drawable.dead_bug_a));
+            exerciseList.clear();
+            exerciseList.addAll(dbHelper.getAllExercises());
+            adapter.notifyDataSetChanged();
+        }
+    }
+}
