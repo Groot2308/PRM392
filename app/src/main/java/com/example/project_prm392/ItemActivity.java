@@ -35,12 +35,6 @@ public class ItemActivity extends AppCompatActivity {
         for (int i = 0; i < exerciseIds.size(); i++) {
             newArray[i] = exerciseIds.get(i);
         }
-//        for (int id : newArray) {
-//            LinearLayout layout = findViewById(id);
-//            if (layout != null) {
-//                layout.setOnClickListener(this::Imagebtnonclicked);
-//            }
-//        }
     }
 
     public void Imagebtnonclicked(View view) {

@@ -49,14 +49,14 @@ public class ExerciseScreen extends AppCompatActivity {
 
     private void addInitialData() {
         if (exerciseList.isEmpty()) {
-            dbHelper.addExercise(new Exercise("Mountain Climber", 2, "01:00 MIN", R.drawable.mountain_climbers_d));
-            dbHelper.addExercise(new Exercise("Bicycle Crunches", 2, "01:00 MIN", R.drawable.bicycle_crunches_a));
-            dbHelper.addExercise(new Exercise("Butt Bridge", 2, "01:00 MIN", R.drawable.butt_bridge_a));
-            dbHelper.addExercise(new Exercise("Bent Leg Twist", 2, "01:00 MIN", R.drawable.bent_leg_twist_a));
-            dbHelper.addExercise(new Exercise("Clapping Crunches", 2, "01:00 MIN", R.drawable.clapping_crunches_a));
-            dbHelper.addExercise(new Exercise("Cross Arm Crunches", 2, "01:00 MIN", R.drawable.cross_arm_crunches_a));
-            dbHelper.addExercise(new Exercise("Cross mountain Climber", 2, "01:00 MIN", R.drawable.cross_body_mountain_climber1));
-            dbHelper.addExercise(new Exercise("Dead Bug", 2, "01:00 MIN", R.drawable.dead_bug_a));
+            dbHelper.addExercise(new Exercise("Mountain Climber", 2, "01:00 MIN", R.drawable.mountain_climbers));
+            dbHelper.addExercise(new Exercise("Bicycle Crunches", 2, "01:00 MIN", R.drawable.bicycle_crunches));
+            dbHelper.addExercise(new Exercise("Butt Bridge", 2, "01:00 MIN", R.drawable.butt_bridge));
+            dbHelper.addExercise(new Exercise("Bent Leg Twist", 2, "01:00 MIN", R.drawable.bent_leg_twist));
+            dbHelper.addExercise(new Exercise("Clapping Crunches", 2, "01:00 MIN", R.drawable.clapping_crunches));
+            dbHelper.addExercise(new Exercise("Cross Arm Crunches", 2, "01:00 MIN", R.drawable.cross_arm_crunches));
+            dbHelper.addExercise(new Exercise("Cross mountain Climber", 2, "01:00 MIN", R.drawable.cross_body_mountain_climber));
+            dbHelper.addExercise(new Exercise("Dead Bug", 2, "01:00 MIN", R.drawable.dead_bug));
             exerciseList.clear();
             exerciseList.addAll(dbHelper.getAllExercises());
             adapter.notifyDataSetChanged();

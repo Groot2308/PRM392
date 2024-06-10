@@ -1,5 +1,6 @@
 [versions]
 agp = "8.4.0"
+androidGifDrawablez = "1.2.19"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
@@ -8,8 +9,10 @@ material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
 plAndroidGifDrawable = "1.2.28"
+supportAnnotations = "28.0.0"
 
 [libraries]
+android-gif-drawablez = { module = "pl.droidsonroids.gif:android-gif-drawablez", version.ref = "androidGifDrawablez" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -18,6 +21,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 pl-android-gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "plAndroidGifDrawable" }
+support-annotations = { group = "com.android.support", name = "support-annotations", version.ref = "supportAnnotations" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
