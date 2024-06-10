@@ -1,6 +1,5 @@
-package com.example.project_prm392;
+package com.example.project_prm392.Activity;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,9 +10,9 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.project_prm392.R;
+import com.example.project_prm392.Service.SQLiteHelper;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText editTextUsername, editTextPassword, editTextConfirmPass;

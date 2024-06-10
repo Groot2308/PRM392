@@ -1,18 +1,14 @@
-package com.example.project_prm392;
+package com.example.project_prm392.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.project_prm392.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onbtnstart2Click(View view) {
-        Intent intent = new Intent(this,Detail2Activity.class );
+        Intent intent = new Intent(this, Detail2Activity.class );
         startActivity(intent);
     }
 
     private void onbtnstartClick(View view) {
-        Intent intent = new Intent(this,ExerciseScreen.class );
+        Intent intent = new Intent(this, ExerciseScreen.class );
         startActivity(intent);
     }
 

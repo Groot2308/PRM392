@@ -1,4 +1,4 @@
-package com.example.project_prm392;
+package com.example.project_prm392.Activity;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.project_prm392.R;
+import com.example.project_prm392.Service.SQLiteHelper;
 
 public class LoginActivity extends AppCompatActivity {
     EditText editTextUsername, editTextPassword;

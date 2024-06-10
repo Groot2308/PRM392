@@ -78,7 +78,7 @@
 //        }
 //    }
 //}
-package com.example.project_prm392;
+package com.example.project_prm392.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +88,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project_prm392.Model.Exercise;
+import com.example.project_prm392.R;
 
 import java.util.List;
 

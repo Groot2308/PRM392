@@ -1,4 +1,4 @@
-package com.example.project_prm392;
+package com.example.project_prm392.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.project_prm392.R;
 
 public class StartActivity extends AppCompatActivity {
 

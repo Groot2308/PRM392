@@ -1,17 +1,17 @@
-package com.example.project_prm392;
+package com.example.project_prm392.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.project_prm392.R;
+import com.example.project_prm392.Service.SQLiteHelper;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.project_prm392;
+package com.example.project_prm392.Model;
 
 public class Exercise {
     private int id;

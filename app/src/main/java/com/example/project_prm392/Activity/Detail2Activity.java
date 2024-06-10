@@ -1,6 +1,5 @@
-package com.example.project_prm392;
+package com.example.project_prm392.Activity;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -11,9 +10,10 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.project_prm392.Model.Exercise;
+import com.example.project_prm392.R;
+import com.example.project_prm392.Service.SQLiteHelper;
 
 public class Detail2Activity extends AppCompatActivity {
     private TextView nameTextView, repeatTextView, durationTextView;

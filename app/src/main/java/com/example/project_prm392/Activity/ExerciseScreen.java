@@ -1,4 +1,4 @@
-package com.example.project_prm392;
+package com.example.project_prm392.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project_prm392.Adapter.ExerciseAdapter;
+import com.example.project_prm392.Model.Exercise;
+import com.example.project_prm392.R;
+import com.example.project_prm392.Service.SQLiteHelper;
 
 import java.util.List;
 
