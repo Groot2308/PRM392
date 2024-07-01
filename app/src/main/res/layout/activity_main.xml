@@ -56,19 +56,12 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="monospace"
                             android:padding="5dp"
-                            android:text="Before Age 18"
+                            android:text="Morning Exercises"
                             android:textColor="#ff000000"
                             android:textSize="20dp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="serif"
-                            android:padding="5dp"
-                            android:text="Days 60"
-                            android:textSize="20dp"
-                            android:textStyle="bold" />
+
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -144,19 +137,12 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="monospace"
                             android:padding="5dp"
-                            android:text="After Age 18"
+                            android:text="Afternoon exercises"
                             android:textColor="#ff000000"
                             android:textSize="20dp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="serif"
-                            android:padding="5dp"
-                            android:text="Days 60"
-                            android:textSize="20dp"
-                            android:textStyle="bold" />
+
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -231,17 +217,8 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="monospace"
                             android:padding="5dp"
-                            android:text="After Age 18"
+                            android:text="Advanced Exercises"
                             android:textColor="#ff000000"
-                            android:textSize="20dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="serif"
-                            android:padding="5dp"
-                            android:text="Days 60"
                             android:textSize="20dp"
                             android:textStyle="bold" />
 
@@ -281,6 +258,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btnStart3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"

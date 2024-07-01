@@ -1,6 +1,8 @@
 package com.example.project_prm392.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,21 +22,20 @@ public class LoginActivity extends AppCompatActivity {
     Button buttonLogin;
     SQLiteHelper dbHelper;
 
-    private void bindingView(){
+    private void bindingView() {
         editTextUsername = findViewById(R.id.signupname);
         editTextPassword = findViewById(R.id.confirmpass);
         buttonLogin = findViewById(R.id.btnsignup);
 //        buttonRegister = findViewById(R.id.buttonRegister);
     }
 
-    private void bindingAction(){
+    private void bindingAction() {
         dbHelper = new SQLiteHelper(this);
         buttonLogin.setOnClickListener(this::onbuttonLoginClick);
 //        buttonRegister.setOnClickListener(this::onbuttonRegisterClick);
-
     }
 
-    public void onSignUpClick(View view){
+    public void onSignUpClick(View view) {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
@@ -49,6 +50,12 @@ public class LoginActivity extends AppCompatActivity {
             SQLiteDatabase db = dbHelper.getReadableDatabase();
             Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username=? AND password=?", new String[]{username, password});
             if (cursor.moveToFirst()) {
+                // Save login state
+                SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isLoggedIn", true);
+                editor.apply();
+
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -64,6 +71,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+        if (isLoggedIn) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         bindingView();
         bindingAction();
