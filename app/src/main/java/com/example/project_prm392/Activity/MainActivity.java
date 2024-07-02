@@ -98,29 +98,32 @@ public class MainActivity extends AppCompatActivity {
                 if (id == R.id.home) {
                     intent = new Intent(MainActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                     return true;
                 } else if (id == R.id.bmi) {
                     intent = new Intent(MainActivity.this, BMIActivity.class);
                     startActivity(intent);
-                    return true;
-                } else if (id == R.id.profile) {
-                    intent = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    finish();
                     return true;
                 }
                 return false;
             }
         });
 
+
     }
 
-    public void beforage18(View view) {
+    public void morning(View view) {
         Intent intent = new Intent(this, ExerciseScreen.class );
         startActivity(intent);
     }
 
-    public void afterage18(View view) {
-        Intent intent = new Intent(this, Detail2Activity.class );
+    public void afternoon(View view) {
+        Intent intent = new Intent(this, ExerciseScreen2.class );
+        startActivity(intent);
+    }
+    public void advanced(View view) {
+        Intent intent = new Intent(this, ExerciseScreen3.class );
         startActivity(intent);
     }
 }

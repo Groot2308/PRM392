@@ -1,5 +1,6 @@
 package com.example.project_prm392.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -7,10 +8,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project_prm392.Adapter.Exercise2Adapter;
+import com.example.project_prm392.Model.Exercise;
 import com.example.project_prm392.R;
+import com.example.project_prm392.Service.SQLiteHelper;
+
+import java.util.List;
 
 public class ExerciseScreen3 extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private Exercise2Adapter adapter;
+    private SQLiteHelper dbHelper;
+    private List<Exercise> exerciseList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +34,38 @@ public class ExerciseScreen3 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        dbHelper = new SQLiteHelper(this);
+        recyclerView = findViewById(R.id.recyclerView3);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Get exercises with typeId = 2 (evening exercises)
+        exerciseList = dbHelper.getExercisesByTypeId(3);
+        adapter = new Exercise2Adapter(exerciseList, new Exercise2Adapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Exercise exercise) {
+                Intent intent = new Intent(ExerciseScreen3.this, Detail2Activity.class);
+                intent.putExtra("exerciseId", exercise.getId());
+                startActivity(intent);
+            }
+        });
+        recyclerView.setAdapter(adapter);
+
+        addInitialData();
+    }
+
+    private void addInitialData() {
+        if (exerciseList.isEmpty()) {
+            dbHelper.addExercise(new Exercise("Side Leg Raise Left", 2, "01:00 MIN", R.drawable.side_leg_raise_left, 3));
+            dbHelper.addExercise(new Exercise("Side Leg Raise Right", 2, "01:00 MIN", R.drawable.leg_drop, 3));
+            dbHelper.addExercise(new Exercise("Side Plankhip Left", 2, "01:00 MIN", R.drawable.sideplankhipleft, 3));
+            dbHelper.addExercise(new Exercise("Side Plankhip Right", 2, "01:00 MIN", R.drawable.sideplankhipright, 3));
+            dbHelper.addExercise(new Exercise("Standing Bicycle", 2, "01:00 MIN", R.drawable.standing_bicycle_crunches, 3));
+            dbHelper.addExercise(new Exercise("Swimmer", 2, "01:00 MIN", R.drawable.swimmer_and_superman, 3));
+            dbHelper.addExercise(new Exercise("Windshield", 2, "01:00 MIN", R.drawable.roll_up, 3));
+            dbHelper.addExercise(new Exercise("Trunk Rotation", 2, "01:00 MIN", R.drawable.trunk_rotation, 2));
+            exerciseList.clear();
+            exerciseList.addAll(dbHelper.getExercisesByTypeId(3));
+            adapter.notifyDataSetChanged();
+        }
     }
 }

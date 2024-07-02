@@ -8,8 +8,4 @@
         android:id="@+id/bmi"
         android:icon="@drawable/baseline_calculate_24"
         android:title="CalculateBMI" />
-    <item
-        android:id="@+id/profile"
-        android:icon="@drawable/baseline_calculate_24"
-        android:title="CalculateBMI" />
 </menu>

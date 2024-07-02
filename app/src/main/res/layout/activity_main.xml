@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/colorLightGray"
+    android:background="@color/textColor"
     tools:context=".Activity.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -38,7 +38,7 @@
                 android:background="@drawable/bg_1">
 
                 <LinearLayout
-                    android:onClick="beforage18"
+                    android:onClick="morning"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:orientation="horizontal"
@@ -119,7 +119,7 @@
                 android:background="@drawable/bg_1">
 
                 <LinearLayout
-                    android:onClick="afterage18"
+                    android:onClick="afternoon"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:orientation="horizontal"
@@ -200,6 +200,7 @@
                 android:background="@drawable/bg_1">
 
                 <LinearLayout
+                    android:onClick="advanced"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:orientation="horizontal"
