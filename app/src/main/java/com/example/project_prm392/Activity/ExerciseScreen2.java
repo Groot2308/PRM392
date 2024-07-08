@@ -23,6 +23,13 @@ public class ExerciseScreen2 extends AppCompatActivity {
     private Exercise2Adapter adapter;
     private SQLiteHelper dbHelper;
     private List<Exercise> exerciseList;
+    private void bindingView(){
+        recyclerView = findViewById(R.id.recyclerView2);
+    }
+
+    private void bindingAction(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +42,8 @@ public class ExerciseScreen2 extends AppCompatActivity {
             return insets;
         });
         dbHelper = new SQLiteHelper(this);
-        recyclerView = findViewById(R.id.recyclerView2);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // Get exercises with typeId = 2 (evening exercises)
+        bindingView();
+        bindingAction();
         exerciseList = dbHelper.getExercisesByTypeId(2);
         adapter = new Exercise2Adapter(exerciseList, new Exercise2Adapter.OnItemClickListener() {
             @Override
@@ -49,7 +54,6 @@ public class ExerciseScreen2 extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(adapter);
-
         addInitialData();
     }
 

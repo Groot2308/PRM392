@@ -30,14 +30,33 @@ public class MainActivity extends AppCompatActivity {
         btnstart2 = findViewById(R.id.btnStart2);
         btnstart3 = findViewById(R.id.btnStart3);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        Toolbar toolbar = findViewById(R.id.toorbar);
+        setSupportActionBar(toolbar);
     }
 
     private void bindingAction(){
-        btnstart.setOnClickListener(this::onbtnstartClick);
-        btnstart2.setOnClickListener(this::onbtnstart2Click);
-        btnstart3.setOnClickListener(this::onbtnstart3Click);
+        btnstart.setOnClickListener(this::onBtnStartClick);
+        btnstart2.setOnClickListener(this::onBtnStart2Click);
+        btnstart3.setOnClickListener(this::onBtnStart3Click);
+        bottomNavigationView.setOnItemSelectedListener(this::btnNavigationViewSelected);
     }
 
+    private boolean btnNavigationViewSelected(MenuItem item) {
+        Intent intent;
+        int id = item.getItemId();
+        if (id == R.id.home) {
+            intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        } else if (id == R.id.bmi) {
+            intent = new Intent(MainActivity.this, BMIActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return false;
+    }
 
 
     @Override
@@ -63,17 +82,17 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void onbtnstart3Click(View view) {
+    private void onBtnStart3Click(View view) {
         Intent intent = new Intent(this, ExerciseScreen3.class );
         startActivity(intent);
     }
 
-    private void onbtnstart2Click(View view) {
+    private void onBtnStart2Click(View view) {
         Intent intent = new Intent(this, ExerciseScreen2.class );
         startActivity(intent);
     }
 
-    private void onbtnstartClick(View view) {
+    private void onBtnStartClick(View view) {
         Intent intent = new Intent(this, ExerciseScreen.class );
         startActivity(intent);
     }
@@ -83,34 +102,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = findViewById(R.id.toorbar);
-        setSupportActionBar(toolbar);
-
         bindingView();
         bindingAction();
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent;
-                int id = item.getItemId();
-                if (id == R.id.home) {
-                    intent = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return true;
-                } else if (id == R.id.bmi) {
-                    intent = new Intent(MainActivity.this, BMIActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-
     }
 
     public void morning(View view) {

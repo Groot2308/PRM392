@@ -93,6 +93,13 @@ public class ExerciseScreen extends AppCompatActivity {
     private ExerciseAdapter adapter;
     private SQLiteHelper dbHelper;
     private List<Exercise> exerciseList;
+    private void bindingView(){
+        recyclerView = findViewById(R.id.recyclerView);
+    }
+
+    private void bindingAction(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +112,8 @@ public class ExerciseScreen extends AppCompatActivity {
             return insets;
         });
         dbHelper = new SQLiteHelper(this);
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // Get exercises with typeId = 1 (morning exercises)
+        bindingView();
+        bindingAction();
         exerciseList = dbHelper.getExercisesByTypeId(1);
         adapter = new ExerciseAdapter(exerciseList, new ExerciseAdapter.OnItemClickListener() {
             @Override
@@ -119,7 +124,6 @@ public class ExerciseScreen extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(adapter);
-
         addInitialData();
     }
 

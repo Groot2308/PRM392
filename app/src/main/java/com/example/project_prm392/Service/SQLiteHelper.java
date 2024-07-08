@@ -131,15 +131,20 @@ import java.util.List;
 public class SQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "fitness.db";
-    private static final int DATABASE_VERSION = 2; // Updated database version
+    private static final int DATABASE_VERSION = 2;
     private static final String TABLE_EXERCISES = "exercises";
+    private static final String TABLE_USERS = "users";
 
     private static final String COLUMN_EXERCISE_ID = "id";
     private static final String COLUMN_EXERCISE_NAME = "name";
     private static final String COLUMN_EXERCISE_REPEAT_TIMES = "repeat_times";
     private static final String COLUMN_EXERCISE_DURATION = "duration";
     private static final String COLUMN_EXERCISE_IMAGE_RES_ID = "image_res_id";
-    private static final String COLUMN_EXERCISE_TYPE_ID = "typeId"; // New column
+    private static final String COLUMN_EXERCISE_TYPE_ID = "typeId";
+
+    private static final String COLUMN_USER_ID = "id";
+    private static final String COLUMN_USER_USERNAME = "username";
+    private static final String COLUMN_USER_PASSWORD = "password";
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -147,7 +152,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
+        db.execSQL("CREATE TABLE " + TABLE_USERS + " ("
+                + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_USER_USERNAME + " TEXT, "
+                + COLUMN_USER_PASSWORD + " TEXT)");
 
         String CREATE_EXERCISES_TABLE = "CREATE TABLE " + TABLE_EXERCISES + "("
                 + COLUMN_EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -163,7 +171,28 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 2) {
             db.execSQL("ALTER TABLE " + TABLE_EXERCISES + " ADD COLUMN " + COLUMN_EXERCISE_TYPE_ID + " INTEGER DEFAULT 0");
+            db.execSQL("CREATE TABLE " + TABLE_USERS + " ("
+                    + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + COLUMN_USER_USERNAME + " TEXT, "
+                    + COLUMN_USER_PASSWORD + " TEXT)");
         }
+    }
+    public void addUser(String username, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USER_USERNAME, username);
+        values.put(COLUMN_USER_PASSWORD, password);
+        db.insert(TABLE_USERS, null, values);
+        db.close();
+    }
+    public boolean checkUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USERS, null, COLUMN_USER_USERNAME + "=? AND " + COLUMN_USER_PASSWORD + "=?",
+                new String[]{username, password}, null, null, null);
+        boolean userExists = cursor.moveToFirst();
+        cursor.close();
+        db.close();
+        return userExists;
     }
 
     public void addExercise(Exercise exercise) {
@@ -173,7 +202,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         values.put(COLUMN_EXERCISE_REPEAT_TIMES, exercise.getRepeatTimes());
         values.put(COLUMN_EXERCISE_DURATION, exercise.getDuration());
         values.put(COLUMN_EXERCISE_IMAGE_RES_ID, exercise.getImageResId());
-        values.put(COLUMN_EXERCISE_TYPE_ID, exercise.getTypeId()); // Add typeId
+        values.put(COLUMN_EXERCISE_TYPE_ID, exercise.getTypeId());
         db.insert(TABLE_EXERCISES, null, values);
         db.close();
     }
@@ -210,7 +239,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                     cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXERCISE_REPEAT_TIMES)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXERCISE_DURATION)),
                     cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXERCISE_IMAGE_RES_ID)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXERCISE_TYPE_ID)) // Add typeId
+                    cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXERCISE_TYPE_ID))
             );
             exercise.setId(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXERCISE_ID)));
             cursor.close();

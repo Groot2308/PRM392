@@ -26,13 +26,11 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.signupname);
         editTextPassword = findViewById(R.id.confirmpass);
         buttonLogin = findViewById(R.id.btnsignup);
-//        buttonRegister = findViewById(R.id.buttonRegister);
     }
 
     private void bindingAction() {
         dbHelper = new SQLiteHelper(this);
         buttonLogin.setOnClickListener(this::onbuttonLoginClick);
-//        buttonRegister.setOnClickListener(this::onbuttonRegisterClick);
     }
 
     public void onSignUpClick(View view) {
@@ -47,10 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(LoginActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
         } else {
-            SQLiteDatabase db = dbHelper.getReadableDatabase();
-            Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username=? AND password=?", new String[]{username, password});
-            if (cursor.moveToFirst()) {
-                // Save login state
+            if (dbHelper.checkUser(username, password)) {
                 SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("isLoggedIn", true);
@@ -62,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
-            cursor.close();
         }
     }
 

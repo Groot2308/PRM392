@@ -16,39 +16,58 @@ import com.example.project_prm392.R;
 import com.example.project_prm392.Service.SQLiteHelper;
 
 public class Detail2Activity extends AppCompatActivity {
-    private TextView nameTextView, repeatTextView, durationTextView;
+    private TextView nameTextView, repeatTextView, durationTextView, timerText;
     private ImageView exerciseImageView;
     private SQLiteHelper databaseHelper;
     private ProgressBar progressBar;
-    private TextView timerText;
     private Button skipButton;
     private int progressStatus = 60;
     private boolean isRunning = false;
     private boolean isPaused = false;
     private Handler handler = new Handler();
     private Thread timerThread;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_detail2);
+
+    private void bindingView(){
         nameTextView = findViewById(R.id.nameTextView);
         repeatTextView = findViewById(R.id.repeatTextView);
         progressBar = findViewById(R.id.timer);
         timerText = findViewById(R.id.counting);
         skipButton = findViewById(R.id.skip);
-
         exerciseImageView = findViewById(R.id.exerciseImageView);
+    }
+    private void bindingAction(){
+        skipButton.setOnClickListener(this::skipButtonOnClick);
+    }
+
+    private void skipButtonOnClick(View view) {
+        if (isRunning && !isPaused) {
+            isPaused = true;
+            skipButton.setText("RESUME");
+        } else if (isRunning) {
+            isPaused = false;
+            skipButton.setText("SKIP");
+            startTimer();
+        }
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_detail2);
+
+        bindingView();
+        bindingAction();
+
 
         databaseHelper = new SQLiteHelper(this);
-
         int exerciseId = getIntent().getIntExtra("exerciseId", -1);
         if (exerciseId != -1) {
             Exercise exercise = databaseHelper.getExerciseById(exerciseId);
             if (exercise != null) {
                 nameTextView.setText(exercise.getName());
                 repeatTextView.setText("Repeat: " + exercise.getRepeatTimes() + " times");
-//                durationTextView.setText("Duration: " + exercise.getDuration());
                 exerciseImageView.setImageResource(exercise.getImageResId());
 
             }
@@ -58,19 +77,19 @@ public class Detail2Activity extends AppCompatActivity {
         progressBar.setProgress(progressStatus);
         timerText.setText(progressStatus + "");
 
-        skipButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isRunning && !isPaused) {
-                    isPaused = true;
-                    skipButton.setText("RESUME");
-                } else if (isRunning) {
-                    isPaused = false;
-                    skipButton.setText("SKIP");
-                    startTimer();
-                }
-            }
-        });
+//        skipButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isRunning && !isPaused) {
+//                    isPaused = true;
+//                    skipButton.setText("RESUME");
+//                } else if (isRunning) {
+//                    isPaused = false;
+//                    skipButton.setText("SKIP");
+//                    startTimer();
+//                }
+//            }
+//        });
     }
 
     public void btnPlay(View view) {

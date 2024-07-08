@@ -41,18 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
         } else if (username.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
             Toast.makeText(RegisterActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
         } else {
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put("username", username);
-            values.put("password", password);
-
-            long newRowId = db.insert("users", null, values);
-            if (newRowId == -1) {
-                Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                finish();
-            }
+            dbHelper.addUser(username, password);
+            Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 

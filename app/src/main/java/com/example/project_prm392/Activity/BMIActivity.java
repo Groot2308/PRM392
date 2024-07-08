@@ -55,8 +55,6 @@ public class BMIActivity extends AppCompatActivity {
         mmale = findViewById(R.id.male);
         mfemale = findViewById(R.id.female);
 
-
-
     }
     private void bindingAction(){
         mcalculaytebmi.setOnClickListener(this::mcalculateOnclick);
@@ -158,8 +156,6 @@ public class BMIActivity extends AppCompatActivity {
 
             }
         });
-
-
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
