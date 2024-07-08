@@ -102,21 +102,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Weight"
+            android:text="Weight (kg)"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
-        <TextView
+        <EditText
             android:id="@+id/currentweight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="55"
+            android:text="55.0"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:inputType="numberDecimal"/>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -169,7 +170,7 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
-        <TextView
+        <EditText
             android:id="@+id/currentage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -223,12 +224,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Height"
+            android:text="Height (cm)"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
-        <TextView
+        <EditText
             android:id="@+id/currentheight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -238,7 +239,8 @@
             android:text="170"
             android:textColor="@color/white"
             android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:inputType="numberDecimal"/>
         <SeekBar
             android:id="@+id/seekbarforheight"
             android:layout_width="match_parent"

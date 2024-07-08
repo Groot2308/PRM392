@@ -23,6 +23,8 @@ import com.example.project_prm392.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.text.DecimalFormat;
+
 public class BMIActivity extends AppCompatActivity {
 
     private android.widget.Button mcalculaytebmi;
@@ -31,13 +33,14 @@ public class BMIActivity extends AppCompatActivity {
     private ImageView mincrementage, mincrementweight, mdecrementweight,mdecrementage;
     private SeekBar mseekbarforheight;
     RelativeLayout mmale, mfemale;
-    private int intweight = 55;
+    private double intweight = 55.0;
     private int intage = 22;
     private int currentprogress;
     private String mintprogress = "170";
     private String typeofuser = "0";
-    private String weight = "55";
+    private String weight = "55.0";
     private String age2 = "22";
+    private DecimalFormat decimalFormat;
 
     private BottomNavigationView bottomNavigationView;
 
@@ -54,6 +57,7 @@ public class BMIActivity extends AppCompatActivity {
         mseekbarforheight = findViewById(R.id.seekbarforheight);
         mmale = findViewById(R.id.male);
         mfemale = findViewById(R.id.female);
+        decimalFormat = new DecimalFormat("#.#");
 
     }
     private void bindingAction(){
@@ -67,26 +71,26 @@ public class BMIActivity extends AppCompatActivity {
     }
 
     private void mdecrementageOnclick(View view) {
-        intage -= 1;
+        intage --;
         age2 = String.valueOf(intage);
         mcurrentage.setText(age2);
     }
 
     private void mdecrementweightOnclick(View view) {
-        intweight -= 1;
-        weight = String.valueOf(intweight);
+        intweight -= 0.1;
+        weight = decimalFormat.format(intweight);
         mcurrentweight.setText(weight);
     }
 
     private void mincrementweightOnclick(View view) {
-        intweight += 1;
-        weight = String.valueOf(intweight);
+        intweight += 0.1;
+        weight = decimalFormat.format(intweight);
         mcurrentweight.setText(weight);
 
     }
 
     private void mincrementageOnclick(View view) {
-        intage += 1;
+        intage ++;
         age2 = String.valueOf(intage);
         mcurrentage.setText(age2);
     }
