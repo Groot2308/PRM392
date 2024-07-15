@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
             return true;
+        }else if (id == R.id.chat_gpt) {
+            intent = new Intent(MainActivity.this, GPTActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
         }
         return false;
     }

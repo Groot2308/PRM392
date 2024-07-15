@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Project_PRM392"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.GPTActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.GoodBMIActivity"
             android:exported="false" />
         <activity
