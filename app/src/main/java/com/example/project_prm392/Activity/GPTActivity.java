@@ -1,12 +1,15 @@
 package com.example.project_prm392.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project_prm392.Adapter.ChatAdapter;
 import com.example.project_prm392.Model.MessageModel;
 import com.example.project_prm392.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,11 +36,13 @@ public class GPTActivity extends AppCompatActivity {
     private static ArrayList<MessageModel> messageList;
     private ChatAdapter chatAdapter;
     private Map<String, String> gymQnA;
+    private BottomNavigationView bottomNavigationView;
 
     private void bindingView() {
         rcy_chat = findViewById(R.id.rcy_chat);
         edtTextChat = findViewById(R.id.edtTextChat);
         btnSendChat = findViewById(R.id.btnSendChat);
+        bottomNavigationView = findViewById(R.id.bottom_navigation3);
     }
 
     private void bindingAction() {
@@ -76,6 +83,30 @@ public class GPTActivity extends AppCompatActivity {
         bindingView();
         bindingAction();
         loadData();
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                int id = item.getItemId();
+                if (id == R.id.home) {
+                    intent = new Intent(GPTActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.bmi) {
+                    intent = new Intent(GPTActivity.this, BMIActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }else if (id == R.id.chat_gpt) {
+                    intent = new Intent(GPTActivity.this, GPTActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void loadData() {

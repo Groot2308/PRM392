@@ -176,6 +176,11 @@ public class BMIActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                     return true;
+                }else if (id == R.id.chat_gpt) {
+                    intent = new Intent(BMIActivity.this, GPTActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
                 }
                 return false;
             }
